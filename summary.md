@@ -1,0 +1,3 @@
+It is a mutant cat battle game. Fighting with other monster will increase radiation levels leading to mutation of the cats. These mutated states will add extra limbs to the cat. These extra limbs will add extra stats that seem correct such as having six feet increasing speed. The cat will have battle in side scroller fashion. This will have graphics.
+I have writtten the classes for my cat and a base pet class to derieve differnt animal enemies I have also began work on the graphics themselves. I have movement of the cat on screen from left to right while focusing on the correct frame. 
+One thing I still have to do is finish up the graphics. This has been a little harder than I thought but I am slowly getting it.
