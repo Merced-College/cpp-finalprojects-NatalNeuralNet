@@ -12,7 +12,8 @@
                 "-g",
                 "/workspaces/cpp_virtualPet/main.cpp",
                 "/workspaces/cpp_virtualPet/Pet.cpp",
-                "/workspaces/cpp_virtualPet/cat.cpp",
+                "/workspaces/cpp_virtualPet/Cat.cpp",
+                "/workspaces/cpp_virtualPet/Room.cpp",
                 "-o",
                 "/workspaces/cpp_virtualPet/main"
             ],
