@@ -4,11 +4,16 @@
 #include "Cat.h"
 #include <cstdlib>
 #include <ctime>
+#include <queue>
+#include "helper.h"
+
 
 
 int main() {
 
     std::srand(static_cast<unsigned>(std::time(nullptr)));
+    int currentRoomIndex=0;
+    const int totalRooms  = 3;
 
     // Pointers to derived class objects
     Pet* myCat = new Cat("Kitty", 3, 4, 20, 10, 5,50, "Laser toy", 1);
@@ -16,7 +21,8 @@ int main() {
     Room* livingRoom = new Room ("Living Room", "A cozy place with a scratching post.");
     Room* kitchen = new Room ("Kitchen", "Smells like fish.");
     Room* garden = new Room ("Garden", "Sunny and full of birds.");
-    
+    std::vector<Room*> rooms = {livingRoom, kitchen, garden};
+
     livingRoom->addNeighbor(kitchen);
     kitchen->addNeighbor(garden);
     garden->addNeighbor(livingRoom);
@@ -24,31 +30,45 @@ int main() {
     myCat->setCurrentRoom(livingRoom);
     std::vector<Room*> options = myCat->getCurrentRoom()->getNeighbors();
     myCat->moveTo(options[0]);
+
     
     
-    
-    
-    
-    
-    
-    bool turn= true;
-    while (myCat->getHealth() > 0 && myCatBAD->getHealth() > 0) {
-        if (turn){
-        myCat->fight(*myCatBAD);
-        myCat->mutate();
+
+    while (currentRoomIndex < totalRooms)
+    {
+        Pet* player = myCat;
+
+        std::cout<<"You are in "<< rooms[currentRoomIndex]->getName()<< "\n";
+
+        std::cout<<"[Moving across room...]"<< "\n";
+
+        char input;
+        std::cout<<"Press 'f' to fight: ";
+        std::cin>>input;
+        if(input=='f'){
+            std::cout <<"Entering fight!\n";
+            std::vector<Pet*> fighters = { myCat, myCatBAD };
+            runBattle(fighters); //define
         }
-        else{
-            myCatBAD->fight(*myCat);
-            myCatBAD->mutate();
+
+        std::cout << "[Walking to door...]\n";
+
+        std::cout << "[Press 'e' to open door...]\n";
+        std::cin>>input;
+        if(input == 'e'){
+            std::cout<<"Opening door...\n";
+            currentRoomIndex++;
+            if(currentRoomIndex < totalRooms){
+                player->moveTo(rooms[currentRoomIndex]);
+            }
+            else{
+                std::cout<< "Last Room reached. Game Over.";
+                break;
+            }
         }
-        if ((myCat->getSpeed())>myCatBAD->getSpeed()*2){
-            myCatBAD->fight(*myCat);
-            myCatBAD->mutate();
-        }
-        else{
-            myCat->fight(*myCatBAD);
-            myCat->mutate();
-        }
-        turn=!turn;
     }
+
+
+    //end1
+    
 }
