@@ -9,37 +9,68 @@ Cat::Cat(const std::string& name, int age, int mutation_level, int attack, int d
 
 void Cat::printInfo() const {
     Pet::printInfo();  // Call the base class version
-    std::cout << "Favorite Toy: " << favoriteToy << std::endl;
+    //std::cout << "Favorite Toy: " << favoriteToy << std::endl;
     std::cout << "Number of Tails: " << numTails << std::endl;
+    std::cout <<"\n";
 }
 
 void Cat::makeSound() const {
     std::cout << getName() << " meows: Meow meow!" << std::endl;
 }
 
-void Cat::mutate(){
+void Cat::mutate() {
+    // 1) pick a stat index 0..4
+    int statIdx = std::rand() % 4;
+    // 2) pick bonus 1..3
+    int bonus  = std::rand() % 3 + 1;
 
+    // 3) apply via switch
+    switch (statIdx) {
+        case 0: // health
+            setHealth(getHealth() + bonus * 10);
+            numTails += bonus;
+            std::cout << getName() 
+                      << " mutates tails +" << bonus
+                      << " → " << numTails << "\n";
+            std::cout << getName() 
+                      << " mutates health +" << (bonus*10)
+                      << " → " << getHealth() << "\n";
+            break;
+        case 1: // attack
+            setAttack(getAttack() + bonus);
+            numTails += bonus;
+            std::cout << getName() 
+                      << " mutates tails +" << bonus
+                      << " → " << numTails << "\n";
+            std::cout << getName() 
+                      << " mutates attack +" << bonus
+                      << " → " << getAttack() << "\n";
+            break;
+        case 2: // defense
+            setDefense(getDefense() + bonus);
+            numTails += bonus;
+            std::cout << getName() 
+                      << " mutates tails +" << bonus
+                      << " → " << numTails << "\n";
+            std::cout << getName() 
+                      << " mutates defense +" << bonus
+                      << " → " << getDefense() << "\n";
+            break;
+        case 3: // speed
+            setSpeed(getSpeed() + bonus);
+            numTails += bonus;
+            std::cout << getName() 
+                      << " mutates tails +" << bonus
+                      << " → " << numTails << "\n";
+            std::cout << getName() 
+                      << " mutates speed +" << bonus
+                      << " → " << getSpeed() << "\n";
+            
+            break;
+    }
 
-    int bonus = std::rand() % 3 + 1;
-    numTails += bonus;
-    setSpeed(getSpeed()+bonus);
-
-    int newLevel = getMutationLevel() + 1;
-    if (newLevel <= 5) 
-        setMutationLevel(newLevel);
-    else
-        setMutationLevel(1);
-
-    std::cout 
-    << "Mutated: +" << bonus << std::endl
-    << " tails → now " << numTails
-    << ", speed=" << getSpeed()
-    << ", level=" << getMutationLevel()
-    << "\n";
-
-
-    
 }
+
 
 
 Cat::~Cat() {}

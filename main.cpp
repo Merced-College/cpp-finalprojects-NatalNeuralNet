@@ -31,7 +31,7 @@ int main() {
     std::vector<Room*> options = myCat->getCurrentRoom()->getNeighbors();
     myCat->moveTo(options[0]);
 
-    
+    auto enemies = loadEnemies("enemies.csv");
     
 
     while (currentRoomIndex < totalRooms)
@@ -47,7 +47,10 @@ int main() {
         std::cin>>input;
         if(input=='f'){
             std::cout <<"Entering fight!\n";
-            std::vector<Pet*> fighters = { myCat, myCatBAD };
+            std::vector<Pet*> fighters;
+            fighters.push_back(myCat);
+            fighters.insert(fighters.end(), enemies.begin(), enemies.end());
+
             runBattle(fighters); //define
         }
 

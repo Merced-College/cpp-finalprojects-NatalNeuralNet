@@ -16,4 +16,5 @@ struct SpeedCompare {
 // Given a list of fighters, runs the turn‐based battle loop
 void runBattle(std::vector<Pet*>& fighters);
 
+
 #endif

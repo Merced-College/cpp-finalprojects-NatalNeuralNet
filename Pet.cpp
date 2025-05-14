@@ -84,10 +84,12 @@ int Pet::compareTo(const Pet& other) const {
 
 // Output
 void Pet::printInfo() const {
-    std::cout << "Pet Name: " << name << std::endl;
-    std::cout << "Species: " << species << std::endl;
-    std::cout << "Age: " << age << std::endl;
-    std::cout << "Mutation Level: " << mutationLevel << "/10" << std::endl;
+    std::cout << "Pet Name: " << name << "    ";
+    std::cout << "Mutation Level: " << mutationLevel << "/5" << std::endl;
+    std::cout << "Attack: " << attack << "    ";
+    std::cout << "Defense: " << defense << std::endl;
+    std::cout << "Health: " << health << "    ";
+    std::cout << "Speed: " << speed << std::endl;
 }
 
 void Pet::makeSound() const {
@@ -95,11 +97,11 @@ void Pet::makeSound() const {
 }
 
 void Pet::fight(Pet& defender) const {
-    std::cout <<getName()<<" ATTACKS"<< std::endl;
+    std::cout <<getName()<<" ATTACKS "<< defender.getName()<<std::endl;
     int damage = getAttack() - defender.getDefense();
     int newHp = defender.getHealth() - damage;
     defender.setHealth(newHp > 0 ? newHp : 0);
-    std::cout<<defender.getHealth()<<std::endl;
+    std::cout<<defender.getName()<< "'s new health is "<<defender.getHealth()<<std::endl;
     
 }
 
